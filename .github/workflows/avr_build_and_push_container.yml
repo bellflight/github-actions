@@ -6,6 +6,10 @@ on:
       container_name:
         required: true
         type: string
+      platforms:
+        required: true
+        type: string
+        default: linux/amd64,linux/arm64,linux/arm/v7
 
 jobs:
   build:
@@ -58,6 +62,6 @@ jobs:
           tags: |
             ghcr.io/bellflight/avr/${{ inputs.container_name }}:latest
             ghcr.io/bellflight/avr/${{ inputs.container_name }}:${{ env.DATE_TAG }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: ${{ inputs.platforms }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
