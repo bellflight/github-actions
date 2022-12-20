@@ -12,6 +12,39 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Generate .python-version
+        shell: python
+        run: |
+          import os
+          import sys
+
+          if os.path.isfile(".python-version"):
+              sys.exit(0)
+
+          with open("AVR-VMC-Fusion-Module/Dockerfile", "r") as fp:
+              lines = fp.readlines()
+
+          python_version = None
+
+          for line in lines:
+              # Docker FROM statement
+              if line.startswith("FROM") and "python" in line:
+                  python_version = line.split(":")[1].strip()
+                  if "-" in python_version:
+                      python_version = python_version.split("-")[0]
+
+              # Docker ENV statement
+              if line.startswith("ENV") and "PYTHON_VERSION" in line:
+                  if "=" in line:
+                      python_version = line.split("=")[1].strip()
+                  else:
+                      python_version = line.split(" ")[2].strip()
+
+          assert python_version is not None
+
+          with open(".python-version", "w") as fp:
+              fp.write(python_version)
+
       - name: Install poetry
         run: |
           python -m pip install pip wheel pipx --upgrade
