@@ -64,7 +64,7 @@ jobs:
           cache: npm
 
       - name: Install Python Dependencies
-        run: poetry install
+        run: poetry install --sync
 
       - name: Install Node Dependencies
         run: npm install
