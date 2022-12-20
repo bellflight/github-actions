@@ -21,7 +21,7 @@ jobs:
           if os.path.isfile(".python-version"):
               sys.exit(0)
 
-          with open("AVR-VMC-Fusion-Module/Dockerfile", "r") as fp:
+          with open("Dockerfile", "r") as fp:
               lines = fp.readlines()
 
           python_version = None
@@ -41,6 +41,7 @@ jobs:
                       python_version = line.split(" ")[2].strip()
 
           assert python_version is not None
+          print(f"Found {python_version}")
 
           with open(".python-version", "w") as fp:
               fp.write(python_version)
