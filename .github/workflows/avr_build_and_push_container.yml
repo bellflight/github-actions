@@ -21,22 +21,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Check pyproject.toml
-        id: check_pyproject
-        uses: andstor/file-existence-action@v2
-        with:
-          files: "pyproject.toml"
-
-      - name: Install poetry
-        if: steps.check_pyproject.outputs.files_exists == 'true'
-        run: |
-          python -m pip install pip wheel pipx --upgrade
-          pipx install poetry
-
-      - name: Export Poetry Requirements
-        if: steps.check_pyproject.outputs.files_exists == 'true'
-        run: poetry export -o requirements.txt
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
