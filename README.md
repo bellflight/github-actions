@@ -33,16 +33,17 @@ The container is only pushed when the workflow is run on a `push` to the `main` 
 File: [`avr_python_checks.yml`](.github/workflows/avr_python_checks.yml)
 
 This installs Python dependencies using [Poetry](https://python-poetry.org),
-Node dependencies, and then runs the following tools:
-
-- [black](https://github.com/psf/black)
-- [isort](https://pycqa.github.io/isort/)
-- [autoflake](https://github.com/PyCQA/autoflake)
-- [pyleft](https://github.com/NathanVaughn/pyleft)
-- [pyright](https://github.com/Microsoft/pyright)
-- [pyproject-flake8](https://github.com/csachs/pyproject-flake8)
+then runs [Pre-Commit](https://pre-commit.com/). This utilizes the configuration
+defined in the repository's `.pre-commit-config.yaml` file.
 
 This workflow attempts to determine the Python version to use, by parsing the
 `Dockerfile` in the repository. This is either by using a `FROM` image with
 `python` in the name, or explicitly setting an environment variable called
 `PYTHON_VERSION`. Whatever the last found version specifier will be used.
+
+### Pre-Commit Update
+
+File: [`pre-commit_update.yml`](.github/workflows/pre-commit_update.yml)
+
+This updates the repositories referenced in the repository's
+`.pre-commit-config.yaml` file and creates a pull request.

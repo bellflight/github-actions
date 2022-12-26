@@ -1,0 +1,47 @@
+name: Pre-Commit Update
+
+on:
+  workflow_call:
+    inputs:
+      target_branch:
+        type: string
+        default: develop
+
+
+jobs:
+  auto-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.target_branch }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install pre-commit
+        run: pip install pre-commit-update
+
+      - name: Run pre-commit autoupdate
+        run: pre-commit-update
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ github.token }}
+          branch: update/pre-commit-update
+          title: Update Pre-Commit hooks
+          commit-message: Update Pre-Commit hooks
+          body: |
+            Update versions of tools in pre-commit configs to latest version.
+            Please verify the changes locally, as a pull request created by GitHub Actions create trigger workflows:
+
+            ```bash
+            git fetch
+            git checkout update/pre-commit-update
+            git pull
+            poetry run pre-commit --all-files
+            ```
+          labels: dependencies

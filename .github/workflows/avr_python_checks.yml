@@ -57,32 +57,15 @@ jobs:
           python-version-file: .python-version
           cache: poetry
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Cache Pre-Commit
+        uses: actions/cache@v3
         with:
-          node-version: "18"
-          cache: npm
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+          restore-keys: pre-commit
 
       - name: Install Python Dependencies
         run: poetry install --sync
 
-      - name: Install Node Dependencies
-        run: npm install
-
-      - name: Check Formatting
-        run: poetry run python -m black ${{ github.workspace }} --check
-
-      - name: Check Import Order
-        run: poetry run python -m isort ${{ github.workspace }} --check
-
-      - name: Check for Unused Imports
-        run: poetry run python -m autoflake ${{ github.workspace }} --check
-
-      - name: Check Type Hints
-        run: poetry run python -m pyleft ${{ github.workspace }}
-
-      - name: Check Typing
-        run: poetry run npx pyright ${{ github.workspace }}
-
-      - name: Linting
-        run: poetry run python -m pflake8 ${{ github.workspace }}
+      - name: Run Pre-Commit Checks
+        run: poetry run pre-commit --all-files --color=always
