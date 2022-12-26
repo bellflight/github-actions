@@ -47,3 +47,7 @@ File: [`pre-commit_update.yml`](.github/workflows/pre-commit_update.yml)
 
 This updates the repositories referenced in the repository's
 `.pre-commit-config.yaml` file and creates a pull request.
+
+#### Inputs
+
+- `target_branch`: Branch to checkout and create the pull request into. Defaults to `develop`.
