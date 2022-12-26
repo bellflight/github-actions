@@ -68,4 +68,4 @@ jobs:
         run: poetry install --sync
 
       - name: Run Pre-Commit Checks
-        run: poetry run pre-commit --all-files --color=always
+        run: poetry run pre-commit run --all-files --color=always
