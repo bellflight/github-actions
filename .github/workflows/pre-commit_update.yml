@@ -21,10 +21,10 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Install pre-commit
+      - name: Install pre-commit-update
         run: pip install pre-commit-update
 
-      - name: Run pre-commit autoupdate
+      - name: Run pre-commit-update
         run: pre-commit-update
 
       - name: Create Pull Request
