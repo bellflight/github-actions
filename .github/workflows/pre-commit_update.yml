@@ -36,7 +36,7 @@ jobs:
           commit-message: Update Pre-Commit hooks
           body: |
             Update versions of tools in pre-commit configs to latest version.
-            Please verify the changes locally, as a pull request created by GitHub Actions create trigger workflows:
+            Please verify the changes locally, as a pull request created by GitHub Actions cannot trigger workflows:
 
             ```bash
             git fetch
