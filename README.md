@@ -56,7 +56,7 @@ This workflow attempts to determine the Python version to use, by parsing the
 
 #### Inputs
 
-- `coverage_directory`: Directory to record coverage for. Defaults to `src`.
+- `coverage_directory`: Directory to record coverage for. Defaults to `src/`.
 
 
 ### Pre-Commit Update
