@@ -69,7 +69,7 @@ jobs:
 
       - name: Add Coverage Comment
         if: github.event == 'pull_request'
-        uses: MishaKav/pytest-coverage-comment@v1.4.1
+        uses: MishaKav/pytest-coverage-comment@v1.1.41
         with:
           pytest-xml-coverage-path: ./coverage.xml
           junitxml-path: ./pytest.xml
