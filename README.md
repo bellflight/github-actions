@@ -41,6 +41,24 @@ This workflow attempts to determine the Python version to use, by parsing the
 `python` in the name, or explicitly setting an environment variable called
 `PYTHON_VERSION`. Whatever the last found version specifier will be used.
 
+### AVR Python Tests
+
+File: [`avr_python_tests.yml`](.github/workflows/avr_python_tests.yml)
+
+This installs Python dependencies using [Poetry](https://python-poetry.org),
+then runs [pytest](https://docs.pytest.org/) with the
+[pytest-cov](https://pytest-cov.readthedocs.io/en/latest/) plugin.
+
+This workflow attempts to determine the Python version to use, by parsing the
+`Dockerfile` in the repository. This is either by using a `FROM` image with
+`python` in the name, or explicitly setting an environment variable called
+`PYTHON_VERSION`. Whatever the last found version specifier will be used.
+
+#### Inputs
+
+- `coverage_directory`: Directory to record coverage for. Defaults to `src`.
+
+
 ### Pre-Commit Update
 
 File: [`pre-commit_update.yml`](.github/workflows/pre-commit_update.yml)
