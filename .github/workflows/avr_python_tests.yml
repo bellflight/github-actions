@@ -68,7 +68,7 @@ jobs:
         run: poetry run pytest -v --junitxml=pytest.xml --cov-report=xml:coverage.xml --cov=${{ inputs.coverage_directory }} tests/
 
       - name: Add Coverage Comment
-        if: github.event == 'pull_request'
+        if: github.event_name == 'pull_request'
         uses: MishaKav/pytest-coverage-comment@v1.1.41
         with:
           pytest-xml-coverage-path: ./coverage.xml
