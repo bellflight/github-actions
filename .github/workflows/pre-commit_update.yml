@@ -32,7 +32,7 @@ jobs:
         with:
           token: ${{ github.token }}
           branch: update/pre-commit-update
-          title: Update Pre-Commit hooks
+          title: Update Pre-Commit hooks for ${{ github.repository }}
           commit-message: Update Pre-Commit hooks
           delete-branch: true
           body: |
