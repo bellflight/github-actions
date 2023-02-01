@@ -1,4 +1,4 @@
-name: Python Checks
+name: Python tests
 
 on:
   workflow_call:
@@ -6,6 +6,9 @@ on:
       coverage_directory:
         type: string
         default: src/
+
+permissions:
+  pull-requests: write
 
 jobs:
   tests:
