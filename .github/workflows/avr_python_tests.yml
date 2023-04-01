@@ -72,7 +72,7 @@ jobs:
 
       - name: Add Coverage Comment
         if: failure() && github.event_name == 'pull_request'
-        uses: MishaKav/pytest-coverage-comment@v1.1.45
+        uses: MishaKav/pytest-coverage-comment@v1.1.47
         with:
           pytest-xml-coverage-path: coverage.xml
           junitxml-path: pytest.xml
