@@ -53,13 +53,6 @@ jobs:
           with open(".python-version", "w") as fp:
               fp.write(python_version)
 
-      - name: Cache Pipx
-        uses: actions/cache@v3
-        with:
-          path: ~/.local/pipx/venvs
-          key: pipx-venv-${{ hashFiles('pyproject.toml') }}
-          restore-keys: pipx-venv
-
       - name: Install poetry/vscode-task-runner
         run: |
           pipx install poetry

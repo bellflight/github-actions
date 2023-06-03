@@ -22,7 +22,7 @@ jobs:
           python-version: 3.11
 
       - name: Install pre-commit-update
-        run: pip install pre-commit-update
+        run: pipx install pre-commit-update
 
       - name: Run pre-commit-update
         run: pre-commit-update
