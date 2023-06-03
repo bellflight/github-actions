@@ -57,6 +57,7 @@ jobs:
         run: |
           pipx install poetry
           pipx install vscode-task-runner
+          pipx --help
 
       - name: Setup Python
         uses: actions/setup-python@v4
