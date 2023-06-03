@@ -43,7 +43,6 @@ jobs:
             git fetch
             git checkout update/pre-commit-update
             git pull
-            poetry install --sync --all-extras
-            poetry run pre-commit run --all-files
+            vtr pre-commit
             ```
           labels: dependencies
