@@ -46,12 +46,14 @@ jobs:
           with open(".python-version", "w") as fp:
               fp.write(python_version)
 
-      - name: Cache Pipx
+      - name: Cache Python Packages
         uses: actions/cache@v3
         with:
-          path: /opt/pipx/venvs
-          key: pipx-venvs-${{ hashFiles('pyproject.toml') }}
-          restore-keys: pipx-venvs
+          path: |
+            ~/.config/pypoetry
+            ~/.cache/pip
+          key: python-pkgs-${{ hashFiles('pyproject.toml') }}
+          restore-keys: python-pkgs
 
       - name: Install poetry/vscode-task-runner
         run: |
